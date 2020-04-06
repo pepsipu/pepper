@@ -1,0 +1,11 @@
+name: pepper
+version: ${project.version}
+main: me.pepsipu.pepper.Pepper
+api-version: 1.13
+authors: [pepsipu]
+description: A really hot minecraft plugin.
+website: http://pepsipu.com
+commands:
+  infuse:
+    description: become a pepper boy!
+    aliases: []
