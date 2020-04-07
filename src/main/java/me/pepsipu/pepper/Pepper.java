@@ -21,12 +21,16 @@ public final class Pepper extends JavaPlugin {
     public void onEnable() {
         this.logger.info(ChatColor.GOLD + "pepper has started!");
         Objects.requireNonNull(getCommand("infuse")).setExecutor(new Infuse(pepperBoys, logger));
+        getServer().getPluginManager().registerEvents(new Events(this.pepperBoys), this);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             private double i = 0;
             @Override
             public void run() {
                 for (HashMap.Entry<String, PepperPlayer> username: pepperBoys.entrySet()) {
                     Player player = Bukkit.getPlayer(username.getKey());
+                    if (player == null) {
+                        pepperBoys.remove(username.getKey());
+                    }
                     Location loc = player.getLocation();
                     Location anti_loc = loc.clone();
                     double cos_i = Math.cos(i);
